@@ -34,15 +34,12 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     private List<Fragment> list = new ArrayList<Fragment>();//数据源泛型为Fragment
     private FragmentPagerAdapter fragmentPagerAdapter;//Fragment的适配器对象
     private Button informationButton, linkmanButton, settingUpButton;//点击按钮
-    private FragmentTransaction  fragmentTransaction;
-  //  private FrameLayout framenLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         //调用加载数据方法
-
         addData();
         //调用初始化方法
         initialize();
@@ -54,8 +51,6 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
     private void initialize() {
         //初始化viewPager
         viewPager = (ViewPager) findViewById(R.id.homepage_viewPager);
-        //初始化framenLayout控件
-    //    framenLayout = (FrameLayout) findViewById(R.id.homepage_frameLayout);
         //初始化Button
         informationButton = (Button) findViewById(R.id.homepage_information_button);
         linkmanButton = (Button) findViewById(R.id.homepage_linkman_button);
@@ -101,45 +96,18 @@ public class HomepageActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             //点击跳转消息列表页
             case R.id.homepage_information_button:
-                addInformationFragment();
+               viewPager.setCurrentItem(0);
                 break;
             //点击跳转联系人列表页
             case R.id.homepage_linkman_button:
-                addLinkmanFragment();
+                viewPager.setCurrentItem(1);
                 break;
             //点击跳转设置页
             case R.id.homepage_setting_up_button:
-                addSettingUpFragment();
+                viewPager.setCurrentItem(2);
                 break;
         }
-        fragmentTransaction.commit();
     }
 
-    private void addInformationFragment() {
 
-        //开启事务
-        fragmentTransaction = fragmentManager.beginTransaction();
-        //替换Fragment
-        fragmentTransaction.replace(R.id.homepage_frameLayout, list.get(0));
-        //提交事务
-        fragmentTransaction.commit();
-    }
-
-    private void addLinkmanFragment() {
-        //开启事务
-         fragmentTransaction = fragmentManager.beginTransaction();
-        //替换Fragment
-        fragmentTransaction.replace(R.id.homepage_frameLayout, list.get(1));
-        //提交事务
-        fragmentTransaction.commit();
-    }
-
-    private void addSettingUpFragment() {
-        //开启事务
-         fragmentTransaction = fragmentManager.beginTransaction();
-        //替换Fragment
-         fragmentTransaction.replace(R.id.homepage_frameLayout,list.get(2));
-        //提交事务
-        fragmentTransaction.commit();
-    }
 }
