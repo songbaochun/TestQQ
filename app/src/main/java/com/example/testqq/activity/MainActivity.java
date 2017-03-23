@@ -19,7 +19,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.asd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Splik(MainActivity.this, new Intent(MainActivity.this, HomepageActivity.class));
+                Splik(MainActivity.this, new Intent(MainActivity.this, LoginActivity.class));
             }
         });
     }
